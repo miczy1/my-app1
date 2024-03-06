@@ -1,4 +1,3 @@
-import './App.css';
 import React, { useState } from 'react';
 
 function App() {
@@ -9,27 +8,28 @@ function App() {
         setCarName(event.target.value);
     };
 
+    const addCar = () => {
+        setCars([...cars, carName]);
+        setCarName('');
+    };
+
     const deleteCar = (index) => {
-        const updatedCars = [...cars]
+        const updatedCars = [...cars];
         updatedCars.splice(index, 1)
         setCars(updatedCars)
     }
-    const addCar = () => {
-    setCars([...cars, carName]);
-    setCarName('');
-    }
 
-    return(
+    return (
         <div>
-            <p>Enter car name: </p>
-            <input className='car' value={carName} onChange={handleChange}/>
+            <p>Enter car name:</p>
+            <input className='car' value={carName} onChange={handleChange}></input>
             <button onClick={addCar}>ADD</button>
             <ul>
-            {cars.map((car, index) => (
-                <li key={index}>
-                    {car}
-                    <button onClick={() => deleteCar(index)}>DELETE</button>
-                </li>
+                {cars.map((car, index) => (
+                    <li key={index}>
+                        {car}
+                        <button onClick={() => deleteCar(index)}>DELETE</button>
+                    </li>
                 ))}
             </ul>
         </div>
