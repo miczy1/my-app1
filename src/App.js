@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
-import {InputText} from 'primereact/inputtext';
+import React, {Component} from 'react'
+import {InputText} from 'primereact/inputtext'
 import {Card} from 'primereact/card'
 import {Button} from 'primereact/button'
+import {Checkbox} from 'primereact/checkbox'
 import './App.scss'
 
 class App extends Component {
@@ -16,13 +17,17 @@ class App extends Component {
             kolor: '',
             silnik: '',
             blachy: '',
-            // oc: '',
-            // inspection: ''
+            diesel: false,
+            benzyna: false,
+            oc: '',
+            przeglad: ''
         }
     }
 
     handleChange = (e) => {
-        this.setState({[e.target.name]: e.target.value})
+        this.setState({
+            [e.target.name]: e.target.value
+        })
     }
 
     clearForm = () => {
@@ -34,19 +39,32 @@ class App extends Component {
             kolor: '',
             silnik: '',
             blachy: '',
+            diesel: false,
+            benzyna: false,
+            oc: '',
+            przeglad: ''
+        })
+    }
+
+    handleCheckbox = (e) => {
+        const {name, checked} = e.target
+        this.setState({
+            [name]: checked,
+            [name === 'diesel' ? 'benzyna' :'diesel']:false
         })
     }
 
     handleDelete = (index) => {
         const aktSamochody = [...this.state.samochody]
         aktSamochody.splice(index, 1)
-        this.setState({samochody: aktSamochody})
+        this.setState({samochody: aktSamochody}
+        )
     }
 
     handleSubmit = (e) => {
         e.preventDefault()
-        const {samochody, marka, model, rok, kolor, silnik, blachy} = this.state
-        const noweSamochody = {marka, model, rok, kolor, silnik, blachy}
+        const {samochody, marka, model, rok, kolor, silnik, blachy, diesel, benzyna, oc, przeglad} = this.state
+        const noweSamochody = {marka, model, rok, kolor, silnik, blachy, diesel, benzyna, oc, przeglad}
         this.setState({
             samochody: [...samochody, noweSamochody],
             marka: '',
@@ -54,7 +72,11 @@ class App extends Component {
             rok: '',
             kolor: '',
             silnik: '',
-            blachy: ''
+            blachy: '',
+            diesel: false,
+            benzyna: false,
+            oc: '',
+            przeglad: '',
         })
     }
 
@@ -108,22 +130,57 @@ class App extends Component {
                             placeholder="Tablica rejestracyjna"
                             onChange={this.handleChange}
                         />
+                        <InputText
+                            type="text"
+                            name="oc"
+                            value={this.state.oc}
+                            placeholder="Do kiedy ważne OC"
+                            onChange={this.handleChange}
+                        />
+                        <InputText
+                            type="text"
+                            name="przeglad"
+                            value={this.state.przeglad}
+                            placeholder="Do kiedy ważny przegląd"
+                            onChange={this.handleChange}
+                        />
+                        <div className="checkboxes">
+                            <Checkbox
+                                inputId="dieselCheckbox"
+                                name="diesel"
+                                checked={this.state.diesel}
+                                onChange={this.handleCheckbox}
+                            />
+                            <label htmlFor="dieselCheckbox">Diesel</label>
+                            <Checkbox
+                                inputId="benzynaCheckbox"
+                                name="benzyna"
+                                checked={this.state.benzyna}
+                                onChange={this.handleCheckbox}
+                            />
+                            <label htmlFor="benzynaCheckbbox">Benzyna</label>
+                        </div>
+
                         <br/>
                         <Button type="submit" label="DODAJ SAMOCHÓD"/>
+                        <Button type="button" label="WYCZYŚĆ BAZĘ AUT" onClick={this.clearForm}/>
                     </Card>
                 </form>
                 <div>
                     <h2>Baza samochodów</h2>
-                    {this.state.samochody.map((car, index) => (
+                    {this.state.samochody.map((auto, index) => (
                         <Card className="car-list-card" key={index}>
-                            <h3>{car.marka} {car.model}</h3>
+                            <h3>{auto.marka} {auto.model}</h3>
                             <ul>
-                                <li>Rok produkcji: {car.rok}</li>
-                                <li>Kolor: {car.kolor}</li>
-                                <li>Silnik: {car.silnik}</li>
-                                <li>Tablica rejestracyjna: {car.blachy}</li>
+                                <li>Rok produkcji: {auto.rok}</li>
+                                <li>Kolor: {auto.kolor}</li>
+                                <li>Typ silnika: {auto.diesel ? 'Diesel' : auto.benzyna ? 'Benzyna' : 'Nie zaznaczono'}</li>
+                                <li>Silnik: {auto.silnik}</li>
+                                <li>Tablica rejestracyjna: {auto.blachy}</li>
                             </ul>
                             <Button label="USUŃ SAMOCHÓD" onClick={() => this.handleDelete(index)}/>
+                            <Button label="INFORMACJA O OC" onClick={() => alert(`Ubezpieczenie OC wygasa: ${auto.oc}`)}/>
+                            <Button label="INFORMACJA O PRZEGLĄDZIE" onClick={() => alert(`Przegląd wygasa: ${auto.przeglad}`)}/>
                         </Card>
                     ))}
                 </div>
