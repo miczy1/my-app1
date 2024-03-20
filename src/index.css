@@ -1,4 +1,4 @@
-/* App.css */
+/* App.scss */
 .App {
   text-align: center;
 }
@@ -21,7 +21,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #2a2a2a;
 }
 
 ul {
