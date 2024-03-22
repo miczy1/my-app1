@@ -2,96 +2,106 @@ import React, {Component} from 'react'
 import {InputText} from 'primereact/inputtext'
 import {Card} from 'primereact/card'
 import {Button} from 'primereact/button'
-import {Checkbox} from 'primereact/checkbox'
+import {RadioButton} from 'primereact/radiobutton'
+import {Calendar} from 'primereact/calendar'
 import './App.scss'
 
 class App extends Component {
 
-    constructor(props) {
+    constructor(props) {        //definicja stanu
         super(props);
         this.state = {
-            samochody: [],
-            marka: '',
+            cars: [],
+            brand: '',
             model: '',
-            rok: '',
-            kolor: '',
-            silnik: '',
-            blachy: '',
-            diesel: false,
-            benzyna: false,
-            oc: '',
-            przeglad: ''
+            year: '',
+            color: '',
+            engine: '',
+            mileage: '',
+            gearboxType: '',
+            regNumber: '',
+            fuelType: '',
+            insurance: '',
+            techInspection: ''
         }
     }
 
-    handleChange = (e) => {
+    handleChange = (e) => {     //aktualizowanie stanu poprzez zmienianie wartosci formularza
         this.setState({
             [e.target.name]: e.target.value
         })
     }
 
-    clearForm = () => {
+    clearForm = () => {     //funkcja czyszcząca baze samochodów
         this.setState({
-            samochody: [],
-            marka: '',
+            cars: [],
+            brand: '',
             model: '',
-            rok: '',
-            kolor: '',
-            silnik: '',
-            blachy: '',
-            diesel: false,
-            benzyna: false,
-            oc: '',
-            przeglad: ''
+            year: '',
+            color: '',
+            engine: '',
+            mileage: '',
+            gearboxType: '',
+            regNumber: '',
+            fuelType: '',
+            insurance: '',
+            techInspection: ''
         })
     }
 
-    handleCheckbox = (e) => {
-        const {name, checked} = e.target
+    handleRadioButtonChange = (e) => {
         this.setState({
-            [name]: checked,
-            [name === 'diesel' ? 'benzyna' :'diesel']:false
+            fuelType: e.value,
         })
     }
 
-    handleDelete = (index) => {
-        const aktSamochody = [...this.state.samochody]
-        aktSamochody.splice(index, 1)
-        this.setState({samochody: aktSamochody}
+    handleRadioChange = (e) =>{
+        this.setState({
+            gearboxType: e.value
+        })
+    }
+
+    handleDelete = (index) => {     //funkcja usuwająca wybrany samochód
+        const carUpdate = [...this.state.cars]
+        carUpdate.splice(index, 1)
+        this.setState({cars: carUpdate}
         )
     }
 
-    handleSubmit = (e) => {
-        e.preventDefault()
-        const {samochody, marka, model, rok, kolor, silnik, blachy, diesel, benzyna, oc, przeglad} = this.state
-        const noweSamochody = {marka, model, rok, kolor, silnik, blachy, diesel, benzyna, oc, przeglad}
+    handleSubmit = (e) => {     //funkcja obsługująca formularz
+        e.preventDefault()  //zaprzestanie odświeżania się strony po przesłaniu formularza
+        const {cars, brand, model, year, color, engine, mileage, gearboxType, regNumber, fuelType, diesel, gasoline, insurance, techInspection} = this.state
+        const newCars = {brand, model, year, color, engine, mileage, gearboxType, regNumber, fuelType, diesel, gasoline, insurance, techInspection}
         this.setState({
-            samochody: [...samochody, noweSamochody],
-            marka: '',
+            cars: [...cars, newCars],
+            brand: '',
             model: '',
-            rok: '',
-            kolor: '',
-            silnik: '',
-            blachy: '',
-            diesel: false,
-            benzyna: false,
-            oc: '',
-            przeglad: '',
+            year: '',
+            color: '',
+            engine: '',
+            mileage: '',
+            gearboxType: '',
+            regNumber: '',
+            fuelType: '',
+            insurance: '',
+            techInspection: '',
         })
     }
 
     render() {
         return (
+            <>
             <div className="App">
                 <header>
                     <h1>Dodaj samochód do bazy</h1>
                 </header>
                 <form onSubmit={this.handleSubmit}>
                     <Card className="card">
+                        <h3 className="header-a">Informacje o aucie</h3>
                         <InputText
                             type="text"
-                            name="marka"
-                            value={this.state.marka}
+                            name="brand"
+                            value={this.state.brand}
                             placeholder="Marka"
                             onChange={this.handleChange}
                         />
@@ -102,89 +112,143 @@ class App extends Component {
                             placeholder="Model"
                             onChange={this.handleChange}
                         />
+                        <h3 className="header-a">Dane techniczne</h3>
                         <InputText
                             type="text"
-                            name="rok"
-                            value={this.state.rok}
+                            name="year"
+                            value={this.state.year}
                             placeholder="Rok"
                             onChange={this.handleChange}
                         />
                         <InputText
                             type="text"
-                            name="kolor"
-                            value={this.state.kolor}
+                            name="color"
+                            value={this.state.color}
                             placeholder="Kolor"
                             onChange={this.handleChange}
                         />
                         <InputText
                             type="text"
-                            name="silnik"
-                            value={this.state.silnik}
+                            name="engine"
+                            value={this.state.engine}
                             placeholder="Silnik"
                             onChange={this.handleChange}
                         />
                         <InputText
                             type="text"
-                            name="blachy"
-                            value={this.state.blachy}
+                            name="mileage"
+                            value={this.state.mileage}
+                            placeholder="Przebieg"
+                            onChange={this.handleChange}
+                        />
+                        <div className="radio-buttons">
+                            <h4>Rodzaj skrzyni biegów</h4>
+                            <RadioButton className="gearbox-radio-button"
+                                         inputId="manualRadio"
+                                         name="gearboxType"
+                                         value="Manualna"
+                                         checked={this.state.gearboxType === 'Manualna'}
+                                         onChange={this.handleRadioChange}
+                            />
+                            <label htmlFor="manualRadio">Manualna</label>
+                            <RadioButton className="gearbox-radio-button"
+                                         inputId="automaticRadio"
+                                         name="gearboxType"
+                                         value="Automatyczna"
+                                         checked={this.state.gearboxType === 'Automatyczna'}
+                                         onChange={this.handleRadioChange}
+                            />
+                            <label htmlFor="automaticRadio">Automatyczna</label>
+                        </div>
+                        <div className="radio-buttons">
+                            <h4>Typ silnika</h4>
+                            <RadioButton className="fueltype-radio-button"
+                                      inputId="dieselRadio"
+                                      name="fuelType"
+                                      value="Diesel"
+                                      checked={this.state.fuelType === 'Diesel'}
+                                      onChange={this.handleRadioButtonChange}
+                            />
+                            <label htmlFor="dieselRadio">Diesel</label>
+                            <RadioButton className="fueltype-radio-button"
+                                      inputId="gasolineRadio"
+                                      name="fuelType"
+                                      value="Benzyna"
+                                      checked={this.state.fuelType === 'Benzyna'}
+                                      onChange={this.handleRadioButtonChange}
+                            />
+                            <label htmlFor="gasolineRadio">Benzyna</label>
+                            <RadioButton className="fueltype-radio-button"
+                                      inputId="electricRadio"
+                                      value="Elektryk"
+                                      name="fuelType"
+                                      checked={this.state.fuelType === 'Elektryk'}
+                                      onChange={this.handleRadioButtonChange}
+                            />
+                            <label htmlFor="electricRadio">Elektryk</label>
+                            <RadioButton className="fueltype-radio-button"
+                                      inputId="hybridRadio"
+                                      name="fuelType"
+                                      value="Hybryda"
+                                      checked={this.state.fuelType === 'Hybryda'}
+                                      onChange={this.handleRadioButtonChange}
+                            />
+                            <label htmlFor="hybridRadio">Hybryda</label>
+                        </div>
+                        <h3 className="header-a">Dane administracyjne</h3>
+                        <InputText
+                            type="text"
+                            name="regNumber"
+                            value={this.state.regNumber}
                             placeholder="Tablica rejestracyjna"
                             onChange={this.handleChange}
                         />
                         <InputText
                             type="text"
-                            name="oc"
-                            value={this.state.oc}
+                            name="insurance"
+                            value={this.state.insurance}
                             placeholder="Do kiedy ważne OC"
                             onChange={this.handleChange}
                         />
                         <InputText
                             type="text"
-                            name="przeglad"
-                            value={this.state.przeglad}
+                            name="techInspection"
+                            value={this.state.techInspection}
                             placeholder="Do kiedy ważny przegląd"
                             onChange={this.handleChange}
                         />
-                        <div className="checkboxes">
-                            <Checkbox
-                                inputId="dieselCheckbox"
-                                name="diesel"
-                                checked={this.state.diesel}
-                                onChange={this.handleCheckbox}
-                            />
-                            <label htmlFor="dieselCheckbox">Diesel</label>
-                            <Checkbox
-                                inputId="benzynaCheckbox"
-                                name="benzyna"
-                                checked={this.state.benzyna}
-                                onChange={this.handleCheckbox}
-                            />
-                            <label htmlFor="benzynaCheckbbox">Benzyna</label>
-                        </div>
+
 
                         <br/>
                         <Button type="submit" label="DODAJ SAMOCHÓD"/>
                         <Button type="button" label="WYCZYŚĆ BAZĘ AUT" onClick={this.clearForm}/>
                     </Card>
                 </form>
-                <div>
-                    <h2>Baza samochodów</h2>
-                    {this.state.samochody.map((auto, index) => (
+            </div>
+
+        <div className="main">
+                    <h2 className="main-header">Baza samochodów</h2>
+                    {this.state.cars.map((car, index) => (
                         <Card className="car-list-card" key={index}>
-                            <h3>{auto.marka} {auto.model}</h3>
+                            <h3 className="auto-base">{car.brand} {car.model}</h3>
                             <ul>
-                                <li>Rok produkcji: {auto.rok}</li>
-                                <li>Kolor: {auto.kolor}</li>
-                                <li>Typ silnika: {auto.diesel ? 'Diesel' : auto.benzyna ? 'Benzyna' : 'Nie zaznaczono'}</li>
-                                <li>Silnik: {auto.silnik}</li>
-                                <li>Tablica rejestracyjna: {auto.blachy}</li>
+                                <li>Rok produkcji: {car.year}</li>
+                                <li>Kolor: {car.color}</li>
+                                <li>Typ silnika: {car.fuelType}</li>
+                                <li>Skrzynia biegów: {car.gearboxType}</li>
+                                <li>Silnik: {car.engine}</li>
+                                <li>Przebieg: {car.mileage}</li>
+                                <li>Tablica rejestracyjna: {car.regNumber}</li>
                             </ul>
                             <Button label="USUŃ SAMOCHÓD" onClick={() => this.handleDelete(index)}/>
-                            <Button label="INFORMACJA O OC" onClick={() => alert(`Ubezpieczenie OC wygasa: ${auto.oc}`)}/>
-                            <Button label="INFORMACJA O PRZEGLĄDZIE" onClick={() => alert(`Przegląd wygasa: ${auto.przeglad}`)}/>
+                            <Button label="INFORMACJA O OC"
+                                    onClick={() => alert(`Ubezpieczenie OC wygasa: ${car.insurance}`)}/>
+                            <Button label="INFORMACJA O PRZEGLĄDZIE"
+                                    onClick={() => alert(`Przegląd wygasa: ${car.techInspection}`)}/>
                         </Card>
                     ))}
                 </div>
-            </div>
+        </>
         )
     }
 
