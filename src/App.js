@@ -92,9 +92,7 @@ class App extends Component {
         return (
             <>
             <div className="App">
-                <header>
                     <h1>Dodaj samochód do bazy</h1>
-                </header>
                 <form onSubmit={this.handleSubmit}>
                     <Card className="card">
                         <h3 className="header-a">Informacje o aucie</h3>
@@ -227,7 +225,7 @@ class App extends Component {
             </div>
 
         <div className="main">
-                    <h2 className="main-header">Baza samochodów</h2>
+                    <h2>Baza samochodów</h2>
                     {this.state.cars.map((car, index) => (
                         <Card className="car-list-card" key={index}>
                             <h3 className="auto-base">{car.brand} {car.model}</h3>
