@@ -21,8 +21,8 @@ class App extends Component {
             gearboxType: '',
             regNumber: '',
             fuelType: '',
-            insurance: '',
-            techInspection: ''
+            insurance: null,
+            techInspection: null
         }
     }
 
@@ -44,8 +44,8 @@ class App extends Component {
             gearboxType: '',
             regNumber: '',
             fuelType: '',
-            insurance: '',
-            techInspection: ''
+            insurance: null,
+            techInspection: null
         })
     }
 
@@ -83,8 +83,8 @@ class App extends Component {
             gearboxType: '',
             regNumber: '',
             fuelType: '',
-            insurance: '',
-            techInspection: '',
+            insurance: null,
+            techInspection: null,
         })
     }
 
@@ -201,22 +201,20 @@ class App extends Component {
                             placeholder="Tablica rejestracyjna"
                             onChange={this.handleChange}
                         />
-                        <InputText
-                            type="text"
+                        <Calendar
                             name="insurance"
                             value={this.state.insurance}
+                            dateFormat="dd/mm/yy"
                             placeholder="Do kiedy ważne OC"
-                            onChange={this.handleChange}
+                            onChange={(e)=> this.setState({insurance: e.value})}
                         />
-                        <InputText
-                            type="text"
+                        <Calendar
                             name="techInspection"
                             value={this.state.techInspection}
+                            dateFormat="dd/mm/yy"
                             placeholder="Do kiedy ważny przegląd"
-                            onChange={this.handleChange}
+                            onChange={(e) => this.setState({techInspection: e.value}) }
                         />
-
-
                         <br/>
                         <Button type="submit" label="DODAJ SAMOCHÓD"/>
                         <Button type="button" label="WYCZYŚĆ BAZĘ AUT" onClick={this.clearForm}/>
