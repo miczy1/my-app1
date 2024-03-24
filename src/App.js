@@ -237,7 +237,7 @@ class App extends Component {
                                 <li>Tablica rejestracyjna: {car.regNumber}</li>
                             </ul>
                             <Button label="USUŃ SAMOCHÓD" onClick={() => this.handleDelete(index)}/>
-                            <Button label="INFORMACJA O OC"
+                            <Button label="INFORMACJA O UBEZPIECZENIU"
                                     onClick={() => alert(`Ubezpieczenie OC wygasa: ${car.insurance}`)}/>
                             <Button label="INFORMACJA O PRZEGLĄDZIE"
                                     onClick={() => alert(`Przegląd wygasa: ${car.techInspection}`)}/>

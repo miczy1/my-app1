@@ -49,6 +49,13 @@ input {
     padding-top: 10px;
     padding-bottom: 10px;
     text-align: center;
+    background-color: #000;
+    color: #fff;
+  }
+  Button{
+    margin: 10px;
+    padding: 5px 80px;
+
   }
 }
 
@@ -64,8 +71,8 @@ ul {
 Button {
   padding: 5px 10px;
   margin: 10px;
-  background-color: #00FF00;
-  color: #000;
+  background-color: #000;
+  color: #fff;
   border-radius: 5px;
   cursor: pointer;
   border: none;
@@ -107,20 +114,22 @@ h2{
 }
 
 h3{
-  background-color: darken(#F5F5DC, 25%);
-  color: #000;
+  background-color: darken(#fff, 80%);
+  color: lighten(#000, 85%);
   font-weight: bold;
   border-radius: 5px;
   margin: 15px;
+  padding: 5px 0;
 }
 
 h4{
-  font-size: 20px;
-  color: #000;
-  background-color: darken(#F5F5DC, 15%);
+  font-size: 18px;
+  background-color: darken(#fff, 85%);
+  color: lighten(#000, 85%);
   border-radius: 10px;
   text-align: center;
   margin: 10px 50px;
+  padding: 1px 0;
 }
 
 
