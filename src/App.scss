@@ -57,6 +57,10 @@ input {
     padding: 5px 80px;
 
   }
+  input{
+    margin: 5px 50px;
+    text-align:center;
+  }
 }
 
 ul {
@@ -114,7 +118,7 @@ h2{
 }
 
 h3{
-  background-color: darken(#fff, 80%);
+  background-color: darken(#fff, 90%);
   color: lighten(#000, 85%);
   font-weight: bold;
   border-radius: 5px;
@@ -124,7 +128,7 @@ h3{
 
 h4{
   font-size: 18px;
-  background-color: darken(#fff, 85%);
+  background-color: darken(#fff, 80%);
   color: lighten(#000, 85%);
   border-radius: 10px;
   text-align: center;
