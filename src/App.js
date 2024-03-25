@@ -280,7 +280,7 @@ class App extends Component {
                                 onChange={(e) => this.setState({reservationDate: e.value})}
                             />
                             <Button label="REZERWUJ POJAZD"
-                                    onClick={() => alert(`Zarezerwowano pojazd w terminie: OD ${this.state.reservationDate[0].toLocaleString()} \n\n DO ${this.state.reservationDate[1].toLocaleString()}`)}/>
+                                    onClick={() => alert(`Zarezerwowano ${car.brand} ${car.model} w terminie: OD ${this.state.reservationDate[0].toLocaleString()} \n\n DO ${this.state.reservationDate[1].toLocaleString()}`)}/>
                         </Card>
                     ))}
                 </div>
