@@ -1,9 +1,7 @@
-*{
+* {
   font-size: 18px;
   font-family: "Trebuchet MS";
 }
-
-
 
 .App {
   text-align: center;
@@ -12,11 +10,10 @@
   width: 20%;
 }
 
-.main{
+.main {
   width: 80%;
-  float:left;
+  float: left;
 }
-
 
 form {
   margin-bottom: 20px;
@@ -26,7 +23,6 @@ input {
   margin: 5px;
   padding: 5px;
 }
-
 
 .card {
   background-color: darken(#00ffff, 20%);
@@ -45,28 +41,32 @@ input {
   border-radius: 5px;
   width: 360px;
   display: inline-block;
-  h3{
+
+  h3 {
     padding-top: 10px;
     padding-bottom: 10px;
     text-align: center;
     background-color: #000;
     color: #fff;
   }
-  Button{
+
+  Button {
     margin: 10px;
     padding: 5px 80px;
 
   }
-  input{
+
+  input {
     margin: 5px 50px;
-    text-align:center;
+    text-align: center;
   }
 }
 
 ul {
   list-style: disc inside;
   padding: 0;
-  li{
+
+  li {
     margin-bottom: 5px;
     text-align: left;
   }
@@ -82,34 +82,34 @@ Button {
   border: none;
 }
 
-Button:hover{
+Button:hover {
   background-color: #2a2a2a;
 }
 
-h1{
+h1 {
   background-color: #000;
   border-radius: 5px;
   color: #fff;
-  text-align:center;
+  text-align: center;
   padding: 10px 25px;
-  margin-top: auto ;
+  margin-top: auto;
   margin-bottom: auto;
   margin-right: 10px;
   font-weight: bold;
 }
 
-.fueltype-radio-button{
-  display:inline-block;
-}
-
-.gearbox-radio-button{
+.fueltype-radio-button {
   display: inline-block;
 }
 
-h2{
+.gearbox-radio-button {
+  display: inline-block;
+}
+
+h2 {
   background-color: #000;
   border-radius: 5px;
-  color:#fff;
+  color: #fff;
   text-align: center;
   padding: 16px 10px;
   margin-right: 148px;
@@ -117,7 +117,7 @@ h2{
   font-weight: bold;
 }
 
-h3{
+h3 {
   background-color: darken(#fff, 90%);
   color: lighten(#000, 85%);
   font-weight: bold;
@@ -126,7 +126,7 @@ h3{
   padding: 5px 0;
 }
 
-h4{
+h4 {
   font-size: 18px;
   background-color: darken(#fff, 80%);
   color: lighten(#000, 85%);
@@ -136,25 +136,25 @@ h4{
   padding: 1px 0;
 }
 
-.p-datepicker-month.p-link{
-  background-color:black;
+.p-datepicker-month.p-link {
+  background-color: black;
 
 }
 
-.p-datepicker-year.p-link{
-  background-color:black;
+.p-datepicker-year.p-link {
+  background-color: black;
 }
 
-.p-datepicker-header{
+.p-datepicker-header {
   background-color: darken(yellow, 20%);
   border-radius: 10px;
-  color: darken(white,60%);
+  color: darken(white, 60%);
 }
 
-.p-datepicker-calendar-container{
+.p-datepicker-calendar-container {
   background-color: yellow;
   border-radius: 10px;
-  color: darken(white,60%);
+  color: darken(white, 60%);
 }
 
 

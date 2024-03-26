@@ -47,6 +47,7 @@ class App extends Component {
             fuelType: '',
             insurance: null,
             techInspection: null,
+            reservationDate: null,
         })
     }
 
@@ -266,7 +267,6 @@ class App extends Component {
                                 <li>Przebieg: {car.mileage}</li>
                                 <li>Tablica rejestracyjna: {car.regNumber}</li>
                             </ul>
-                            <Button label="USUŃ SAMOCHÓD" onClick={() => this.handleDelete(index)}/>
                             <Button label="INFORMACJA O UBEZPIECZENIU I PRZEGLĄDZIE"
                                     onClick={() => alert(`Ubezpieczenie OC wygasa: ${car.insurance.toLocaleString()}\nPrzegląd wygasa: ${car.techInspection.toLocaleString()}`)}/>
                             <h4>REZERWACJA POJAZDU</h4>
@@ -281,6 +281,7 @@ class App extends Component {
                             />
                             <Button label="REZERWUJ POJAZD"
                                     onClick={() => alert(`Zarezerwowano ${car.brand} ${car.model} w terminie: OD ${this.state.reservationDate[0].toLocaleString()} \n\n DO ${this.state.reservationDate[1].toLocaleString()}`)}/>
+                            <Button label="USUŃ SAMOCHÓD" onClick={() => this.handleDelete(index)}/>
                         </Card>
                     ))}
                 </div>
