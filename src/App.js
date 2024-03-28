@@ -24,6 +24,7 @@ class App extends Component {
             insurance: null,
             techInspection: null,
             reservationDate: null,
+            searchName: '',
         }
     }
 
@@ -120,6 +121,11 @@ class App extends Component {
     }
 
     render() {
+        const {searchName} = this.state
+        const filteredCars = this.state.cars.filter(car =>
+            car.brand.toLowerCase().includes(searchName.toLowerCase()) ||
+            car.model.toLowerCase().includes(searchName.toLowerCase())
+        )
         return (
             <>
                 <div className="App">
@@ -131,12 +137,12 @@ class App extends Component {
                                 type="text"
                                 name="brand"
                                 value={this.state.brand}
-                                placeholder="Marka"
+                                placeholder="*Marka"
                                 onChange={this.handleChange}
                             />
                             <InputText
                                 type="text"
-                                name="model"
+                                name="*model"
                                 value={this.state.model}
                                 placeholder="Model"
                                 onChange={this.handleChange}
@@ -229,21 +235,21 @@ class App extends Component {
                                 type="text"
                                 name="regNumber"
                                 value={this.state.regNumber}
-                                placeholder="Tablica rejestracyjna"
+                                placeholder="*Tablica rejestracyjna"
                                 onChange={this.handleChange}
                             />
                             <Calendar
                                 name="insurance"
                                 value={this.state.insurance}
                                 dateFormat="dd/mm/yy"
-                                placeholder="Do kiedy ważne OC"
+                                placeholder="*Do kiedy ważne OC"
                                 onChange={(e) => this.setState({insurance: e.value})}
                             />
                             <Calendar
                                 name="techInspection"
                                 value={this.state.techInspection}
                                 dateFormat="dd/mm/yy"
-                                placeholder="Do kiedy ważny przegląd"
+                                placeholder="*Do kiedy ważny przegląd"
                                 onChange={(e) => this.setState({techInspection: e.value})}
                             />
                             <br/>
@@ -255,7 +261,15 @@ class App extends Component {
 
                 <div className="main">
                     <h2>Baza samochodów</h2>
-                    {this.state.cars.map((car, index) => (
+                    <InputText
+                        id="search-input"
+                        type="text"
+                        name="searchName"
+                        value={searchName}
+                        placeholder="Szukaj po nazwie"
+                        onChange={this.handleChange}
+                    />
+                    {filteredCars.map((car, index) => (
                         <Card className="car-list-card" key={index}>
                             <h3 className="auto-base">{car.brand} {car.model}</h3>
                             <ul>
